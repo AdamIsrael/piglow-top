@@ -1,0 +1,29 @@
+name: piglow-top
+version: 0.1.0
+summary: A CPU monitor for the Raspberry Pi that displays on a PiGlow.
+description: |
+  A real-time CPU utilization monitor for the Raspberry Pi that displays its output on a PiGlow (https://shop.pimoroni.com/products/piglow).
+
+confinement: strict
+grade: stable
+base: core18
+
+# architectures: [armhf]
+architectures:
+  - build-on: all
+    run-on: armhf
+
+parts:
+  piglow-top:
+    plugin: go
+    go-importpath: github.com/AdamIsrael/piglow-top
+    source: .
+    source-type: git
+    build-packages:
+      - gcc
+
+apps:
+  piglow-top:
+    daemon: simple
+    command: bin/piglow-top
+    plugs: [ i2c ]

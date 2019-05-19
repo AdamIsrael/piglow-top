@@ -18,3 +18,9 @@ PiGlow Top accepts two parameters:
 
   This is how often CPU utilization info is gathered from the system (i.e. how
   quickly the PiGlow is updated).
+
+```bash
+snap install piglow-top
+snap connect piglow-top:i2c pi2:i2c-1
+snap start piglow-top
+```
